@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
 import { inject, observer } from 'mobx-react';
 
-import CompanyContainer from './containers/Company/CompanyContainer';
-import CompanyListContainer from './containers/Company/CompanyListContainer';
-import CompanyEditor from './containers/Company/CompanyEditor';
+import CompanyContainer from './Company/CompanyContainer';
+import CompanyListContainer from './Company/CompanyListContainer';
+import CompanyEditor from './Company/CompanyEditor';
 
 @inject('companyStore')
 @withRouter

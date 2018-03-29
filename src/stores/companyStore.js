@@ -1,6 +1,6 @@
 import { observable, action } from 'mobx';
 
-import axios from '../axios-with-mock';
+import { CompanyService } from '../services/companyService';
 
 export class CompanyStore {
 	@observable isLoading = false;
@@ -14,7 +14,7 @@ export class CompanyStore {
 	@action loadCompanyList() {
 		this.isLoading = true;
 		
-		axios.get('/company')
+		CompanyService.all()
 			.then(response => this.companyList = response.data)
 			.catch(error => this.errors = 'Ошибка загрузки списка компаний')
 			.finally(action(() => this.isLoading = false ));
@@ -23,7 +23,7 @@ export class CompanyStore {
 	@action updateCompany(company) {
 		this.isLoading = true;
 		
-		axios.post('/company')
+		CompanyService.update()
 			.then(response => {
 				var foundIndex = this.companyList.findIndex(x => x.id === company.id);
 				this.companyList[foundIndex] = company;

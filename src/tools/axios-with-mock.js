@@ -1,7 +1,7 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 
-import { FAKE_HTTP_RESPONSE_TIME, COMPANY_LIST } from './constants';
+import { FAKE_HTTP_RESPONSE_TIME, COMPANY_LIST } from '../constants';
 
 const instance = axios.create();
 
