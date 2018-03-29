@@ -9,7 +9,7 @@ import MaterialCheckbox from '../../components/UI/Inputs/MaterialCheckbox';
 import MaterialDatepicker from '../../components/UI/Inputs/MaterialDatepicker';
 import MaterialSelect from '../../components/UI/Inputs/MaterialSelect';
 
-const companyEditForm = ({form, updated, goBackUrl}) => {
+const companyEditForm = observer(({form, updated, goBackUrl}) => {
 
 	return (
 		<form onSubmit={updated}>
@@ -19,7 +19,7 @@ const companyEditForm = ({form, updated, goBackUrl}) => {
 			<MaterialCheckbox field={form.$('isActive')} />
 			<MaterialSelect field={form.$('ownershipType')} />
 
-			<p>{form.error}</p>			
+			<p>{form.error}</p>	
 
 			<RaisedButton type="submit" label="Сохранить" />
 			<Link to={goBackUrl}>
@@ -27,7 +27,7 @@ const companyEditForm = ({form, updated, goBackUrl}) => {
 			</Link>	
 		</form>
 	);
-};
+});
 
 companyEditForm.propTypes = {
 	form: PropTypes.object.isRequired,
@@ -38,4 +38,4 @@ companyEditForm.defaultProps = {
 	goBackUrl: '/'
 }
 
-export default observer(companyEditForm);
+export default companyEditForm;

@@ -3,21 +3,23 @@ import { inject, observer } from 'mobx-react';
 
 import Spinner from '../../components/UI/Spinner/Spinner';
 import CompanyEditForm from '../../components/CompanyEditForm/CompanyEditForm';
+import { CompanyForm } from '../../forms/companyForm';
 
-@inject('companyStore', 'companyForm')
+@inject('companyStore')
 @observer
 class CompanyEditor extends Component {
 	constructor(props) {
 		super(props);
 		this.companyId = +this.props.match.params.id;
 		this.goBackUrl = "/company/" + this.companyId;
+		this.companyForm = new CompanyForm();
 	}
 
 	updateHandler = (event) => {
-		this.props.companyForm.onSubmit(event);
-		if (this.props.companyForm.isValid) {
+		this.companyForm.onSubmit(event);
+		if (this.companyForm.isValid) {
 			this.props.companyStore.updateCompany({
-				...this.props.companyForm.values(),
+				...this.companyForm.values(),
 				id: this.companyId
 			});
 			this.props.history.push(this.goBackUrl);
@@ -29,12 +31,11 @@ class CompanyEditor extends Component {
 		const company = this.props.companyStore.getCompany(this.companyId);
 
 		if (company) {
-			this.props.companyForm.clear();
-			this.props.companyForm.update({...company});
+			this.companyForm.update({...company});
 			form = <CompanyEditForm 
-				form={ this.props.companyForm} 
+				form={ this.companyForm} 
 				updated={this.updateHandler}
-				goBackUrl={this.goBackUrl}/>;
+				goBackUrl={this.goBackUrl} />;
 		}
 		
 		if (this.props.companyStore.isLoading) {

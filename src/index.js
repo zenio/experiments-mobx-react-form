@@ -8,18 +8,13 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import './index.css';
 import App from './App';
 import companyStore from './stores/companyStore';
-import companyForm from './forms/companyForm';
 
 const stores = {
   companyStore
 };
 
-const forms = {
-  companyForm
-};
-
 const app = (
-	<Provider {...stores} {...forms}>
+	<Provider {...stores}>
 		<BrowserRouter>
 			<MuiThemeProvider>
 				<App />

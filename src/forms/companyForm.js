@@ -3,7 +3,7 @@ import validatorjs from 'validatorjs';
 
 import {OWNERSHIP_OPTIONS} from '../constants';
 
-class CompanyForm extends Form {
+export class CompanyForm extends Form {
 
   plugins() {
     return { dvr: validatorjs };
